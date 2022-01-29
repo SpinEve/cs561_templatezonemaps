@@ -1,11 +1,11 @@
-all: main workloadgenerator
+all: main workload_generator
 
 main: main.cpp zonemaps.cpp 
-	g++ -g -std=c++11 -o $@ $^
+	clang++ -g -std=c++11 -o $@ $^
 
-workloadgenerator: workload_generator.cpp
-	g++ -g -std=c++0x -o $@ $^
+workload_generator: workload_generator.cpp
+	clang++ -g -std=c++0x -o $@ $^
 
 clear: 
 	rm main
-	rm workloadgenerator
+	rm workload_generator
