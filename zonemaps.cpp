@@ -7,6 +7,7 @@ zonemap<T>::zonemap(std::vector<T> _elements,
   elements = _elements;
   num_elements_per_zone = _num_elements_per_zone;
   num_zones = 0;
+  build();
 }
 
 template <typename T>
@@ -45,7 +46,7 @@ bool zonemap<T>::query(T key) {
     if (key >= zones[i].min && key <= zones[i].max) {
       for (int j = 0; j < zones[i].size; j++) {
         // Find it
-        if (key == zones[i][j]) return true;
+        if (key == zones[i].elements[j]) return true;
       }
     }
   }
