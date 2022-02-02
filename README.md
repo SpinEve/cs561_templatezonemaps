@@ -1,16 +1,12 @@
-# CS 561: Data Systems Architecture - TemplateZonemaps
+# CS 561: Data Systems Architecture - Zonemaps
 
 
 ## About
 
-TemplateZonemaps is a simple template for you, the student, to use for the simple
-implementation project in CS 561. Note that this is a high level template, it is
-not extensive, rather it is meant to help guide you on what we expect when
-you implement the zonemaps. You can use this as base code or start from
-scratch. You may require additional helper functions to satisfy the requirements of the project.
+This repo is implemented on TemplateZonemaps (see original repo) with some changes to make testing easier.
 
 ## Generating Workloads
-You will be asked to generate workloads of a specific size, with varying noise levels. A workload generator
+You can generate workloads of a specific size, with varying noise levels. A workload generator
 is provided as part of the API that performs the required functionality. Here, noise (%) is the percentage (int) 
 of out of order elements, and windowThreshold(%) is the window (as percentage of total elements) within which an
 out of order element can be placed from its original location. So, a 5% noise and 5% window threshold means 
@@ -47,9 +43,16 @@ use the command:
 ```c
 ./main <input_file> <test_case>
 ```
+If no case is given, it will run *all* preconfigured cases.
+
 For example, to run point queries on an input file:
 ```c
 ./main ./data_1000000-elems_0-kperct_5-lperct_1seed1611707662.dat test_pq
+```
+
+For general tests, just run like:
+```c
+./main ./data_1000000-elems_0-kperct_5-lperct_1seed1611707662.dat
 ```
 
 ## Contact
