@@ -7,7 +7,7 @@ zonemap<T>::zonemap(std::vector<T> _elements,
   elements = _elements;
   num_elements_per_zone = _num_elements_per_zone;
   num_zones = 0;
-  build();
+  build(); // Call build
 }
 
 template <typename T>
@@ -16,11 +16,17 @@ void zonemap<T>::build() {
   tmpZone.elements = std::vector<T>();
   tmpZone.size = 0;
 
+  // Travel through all elements ...
   for (int i = 0; i < elements.size(); i++) {
-    tmpZone.elements.push_back(elements[i]);  // element[i:i+size]?
+    // Push it into current zone, update its size
+    tmpZone.elements.push_back(elements[i]);
     tmpZone.size++;
+
+    // Maintain min and max value
     if (elements[i] > tmpZone.max) tmpZone.max = elements[i];
     if (elements[i] < tmpZone.min) tmpZone.min = elements[i];
+
+    // This zone is full, push it into zones vector and generate a new one
     if (tmpZone.size >= num_elements_per_zone) {
       zones.push_back(tmpZone);
       num_zones++;
@@ -29,6 +35,8 @@ void zonemap<T>::build() {
       tmpZone.size = 0;
     }
   }
+
+  // For last zone, if it's not empty, push it to zones
   if (tmpZone.size > 0) {
     zones.push_back(tmpZone);
     num_zones++;
