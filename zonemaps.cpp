@@ -67,7 +67,7 @@ std::vector<T> zonemap<T>::query(T low, T high) {
   // Assume the query is [low, high), left close right open
   std::vector<T> res = std::vector<T>();
 
-  // Empty range, return
+  // Empty range, return (empty)
   if (high <= low) return res;
 
   // For every zone
