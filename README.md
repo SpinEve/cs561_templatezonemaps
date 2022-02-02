@@ -55,6 +55,12 @@ For general tests, just run like:
 ./main ./data_1000000-elems_0-kperct_5-lperct_1seed1611707662.dat
 ```
 
+## Some result
+
+On 1 million data with 0/5/25 noise, average point query use 17.79/158/158 ms on my machine. We can see a huge performance decrease when zone map becomes noisy. (Need to scan more zones) But there's a threshold that when it's noisy enough, we need to scan all zones and degenerate to linear scan whole zonemap.
+
+For range query, the performance is almost the same. About 8000 ms for 10-20, 6500 ms for 30-40, 5000 ms for 50-60 and 4000 ms for 70-80. There is some increase of time when noise level grows, but not that much. Not sure why it's faster in higher domain than lower, maybe related to distribution of data?
+
 ## Contact
 
 If you have any questions please feel free to see Aneesh in office hours, or
