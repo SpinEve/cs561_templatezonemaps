@@ -35,6 +35,31 @@ std::vector<int> generatePointQueries(std::vector<int> data, int n) {
   return queries;
 }
 
+// Simple struct for range
+struct Range
+{
+  int start;
+  int end;
+};
+
+
+Range generateRangeQueries(std::vector<int> data, double startRatio, double endRatio){
+  // Assume keys are sorted
+  int minKey = data[0];
+  int maxKey = data[data.size() - 1];
+
+  // Calculate start and end key value
+  int startKey = int(minKey + (maxKey - minKey) * startRatio);
+  int endKey = int(minKey + (maxKey - minKey) * endRatio);
+
+  // Assign them to a Range
+  Range res;
+  res.start = startKey;
+  res.end = endKey;
+
+  return res;
+}
+
 int main(int argc, char **argv) {
   if (argc < 3) {
     std::cout << "Usage: ./main <input_file> <test_case>" << std::endl;
@@ -76,6 +101,11 @@ int main(int argc, char **argv) {
 
     auto start = std::chrono::high_resolution_clock::now();
     // query from zonemaps here
+
+    for (int i = 0; i < queries.size(); i++) {
+      zones.query(queries[i]);
+    }
+
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration =
         std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
@@ -87,7 +117,9 @@ int main(int argc, char **argv) {
     // -----------------------------
     auto start = std::chrono::high_resolution_clock::now();
     // range query from zonemaps here
-    int n = data.size();
+
+    Range rng = generateRangeQueries(data, 0.1, 0.2);
+    zones.query(rng.start, rng.end);
 
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration =
@@ -100,7 +132,8 @@ int main(int argc, char **argv) {
     // -----------------------------
     auto start = std::chrono::high_resolution_clock::now();
     // range query from zonemaps here
-    int n = data.size();
+    Range rng = generateRangeQueries(data, 0.3, 0.4);
+    zones.query(rng.start, rng.end);
 
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration =
@@ -113,7 +146,8 @@ int main(int argc, char **argv) {
     // -----------------------------
     auto start = std::chrono::high_resolution_clock::now();
     // range query from zonemaps here
-    int n = data.size();
+    Range rng = generateRangeQueries(data, 0.5, 0.6);
+    zones.query(rng.start, rng.end);
 
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration =
@@ -126,7 +160,8 @@ int main(int argc, char **argv) {
     // -----------------------------
     auto start = std::chrono::high_resolution_clock::now();
     // range query from zonemaps here
-    int n = data.size();
+    Range rng = generateRangeQueries(data, 0.7, 0.8);
+    zones.query(rng.start, rng.end);
 
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration =
