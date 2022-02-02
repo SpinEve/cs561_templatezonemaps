@@ -7,7 +7,7 @@ zonemap<T>::zonemap(std::vector<T> _elements,
   elements = _elements;
   num_elements_per_zone = _num_elements_per_zone;
   num_zones = 0;
-  build(); // Call build
+  build();  // Call build
 }
 
 template <typename T>
@@ -66,7 +66,7 @@ template <typename T>
 std::vector<T> zonemap<T>::query(T low, T high) {
   // Assume the query is [low, high), left close right open
   std::vector<T> res = std::vector<T>();
-  
+
   // Empty range, return
   if (high <= low) return res;
 
@@ -78,8 +78,8 @@ std::vector<T> zonemap<T>::query(T low, T high) {
 
     // Add elements in range
     for (int j = 0; j < zones[i].size; j++) {
-      if (zones[i][j] >= low && zones[i][j] < high) {
-        res.push_back(zones[i][j]);
+      if (zones[i].elements[j] >= low && zones[i].elements[j] < high) {
+        res.push_back(zones[i].elements[j]);
       }
     }
   }
